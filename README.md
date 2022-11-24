@@ -1,34 +1,29 @@
 # UYEN.NGUYEN_JEST_SUPERTEST
 
-## Install package.json with NPM
+# API Automation With Jest Supertest
 
-- npm init
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Testing](#testing)
 
-## Install jest in dev dependencies
+---
 
-- npm i --save-dev jest
+<a name="tech-stack"></a>
 
-## Install supertest in dev dependencies
+## Tech Stack
 
-- npm i --save-dev supertest
+- Node.js
+- TypeScript
+- ts-jest
 
-## Install jest and supertest with typescript
+<a name="installation"></a>
 
-- npm i -D jest supertest @types/jest @types/supertest typescript
+## Installation
 
-## Create config file for TS and Jest:
+$ npm install
 
-- npx ts-jest config:init
-- npx tsc --init
-
-## Install dotenv to run project with env file
-
-- npm i dotenv dotenv-cli
-
-## Run test with command line
-
-- npm run test
+<a name="testing"></a>
 
 ## Run test in the QA Environment
 
-- npm run test:qa
+$ npm run test:qa

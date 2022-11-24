@@ -1,30 +1,34 @@
 import request from "supertest";
+import {
+  createdImageId,
+  create_image_request,
+} from "./common/create_image_request";
 
 const baseUrl = process.env.ENDPOINT;
-const token = process.env.TOKEN;
-//change location image when download
-const mockFiles = "D:/API_automation_Uyen.Nguyen/imageFile/1.jpg";
-let imageID: string;
+const token = "live_" + process.env.TOKEN;
+const path = "v1/images/";
 
-describe("delete image", () => {
-  // post image to get id
-  let accessToken = "live_" + token;
+describe("DELETE -/v1/images -Delete image", () => {
   beforeEach(async () => {
-    const response = await request(baseUrl)
-      .post("v1/images/upload")
-      .attach("file", mockFiles)
-      .set("x-api-key", accessToken)
-      .set("Content-Type", "multipart/form-data");
-    expect(response.statusCode).toBe(201);
-    expect(response.body.original_filename).toEqual("1.jpg");
-    imageID = response.body.id;
+    await create_image_request();
   });
 
-  //get id from response to delete image
-  it("Verify that user can delete image", async () => {
+  let deletedImageId: string;
+
+  it("IMG_06:Verify that user can delete image", async () => {
     const response = await request(baseUrl)
-      .delete("v1/images/" + imageID)
-      .set("x-api-key", accessToken);
+      .delete(path + createdImageId)
+      .set("x-api-key", token);
     expect(response.statusCode).toBe(204);
+    deletedImageId = response.body.id;
+  });
+
+  it("Verify that user cannot search the deleted image", async () => {
+    const response = await request(baseUrl)
+      .get(path + deletedImageId)
+      .set("x-api-key", token);
+    expect(response.statusCode).toBe(400);
+    expect(response.body.id).toBeUndefined();
+    expect(response.body.url).toBeUndefined();
   });
 });
