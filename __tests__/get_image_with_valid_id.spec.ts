@@ -10,7 +10,7 @@ describe("GET -/v1/images/ -Get image", () => {
     await get_id_request();
   });
 
-  it("Verify that user can get image with existing id", async () => {
+  it("IMG-03: Verify that user can get image with existing id", async () => {
     const response = await request(baseUrl)
       .get(`${path}/${id}`)
       .set("x-api-key", token);

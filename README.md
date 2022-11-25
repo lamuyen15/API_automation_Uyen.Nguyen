@@ -20,10 +20,10 @@
 
 ## Installation
 
-$ npm install
+- npm install
 
 <a name="testing"></a>
 
 ## Run test in the QA Environment
 
-$ npm run test:qa
+- npm run test:qa
