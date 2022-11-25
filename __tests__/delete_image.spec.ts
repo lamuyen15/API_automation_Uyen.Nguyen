@@ -32,3 +32,4 @@ describe("DELETE -/v1/images -Delete image", () => {
     expect(response.body.url).toBeUndefined();
   });
 });
+
